@@ -2,6 +2,12 @@
 
 轻量 Windows 托盘工具，用于启动、停止和监控本机 `dsh web`。
 
+## 运行截图
+
+![DSH Web Launcher 运行界面](docs/screenshots/launcher-running.png)
+
+启动器会显示 DSH Web 的运行状态、进程 PID、内存占用、运行时长、访问地址和实时日志；发现已有 DSH Web 时，可以直接接管并停止该实例。
+
 ## 能力
 
 - 一键启动和停止由本应用管理的完整 `dsh web` 进程树
