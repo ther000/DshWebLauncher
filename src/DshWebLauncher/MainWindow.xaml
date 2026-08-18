@@ -1,0 +1,188 @@
+<Window x:Class="DshWebLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="DSH Web Launcher" Width="900" Height="680" MinWidth="760" MinHeight="560"
+        WindowStartupLocation="CenterScreen" Background="#0D1119" Foreground="#E9EDF5"
+        FontFamily="Segoe UI" FontSize="13" UseLayoutRounding="True">
+    <Window.Resources>
+        <Style x:Key="SectionTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#F5F7FB" />
+            <Setter Property="Margin" Value="0,0,0,12" />
+        </Style>
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#A7B1C2" />
+            <Setter Property="Margin" Value="0,0,0,6" />
+        </Style>
+        <Style x:Key="QuietText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#A7B1C2" />
+        </Style>
+        <Style x:Key="StatValue" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#F2F5FA" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="28,24,28,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,22">
+            <StackPanel Orientation="Horizontal">
+                <Border Width="42" Height="42" CornerRadius="11" Background="#1A2440" Margin="0,0,13,0">
+                    <Image Source="/DshWebLauncher;component/Assets/deepseek-whale-blue.png" Width="31" Height="31" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="DSH Web Launcher" FontSize="20" FontWeight="SemiBold" Foreground="#F5F7FB" />
+                    <TextBlock Text="轻量启动与运行监控" Style="{StaticResource QuietText}" Margin="0,3,0,0" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Text="DEEPSEEK HARNESS" FontSize="10" FontWeight="SemiBold" Foreground="#5D6A80" HorizontalAlignment="Right" />
+                <TextBlock Text="本机服务控制台" Style="{StaticResource QuietText}" HorizontalAlignment="Right" Margin="0,4,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Background="#151C28" BorderBrush="#253148" BorderThickness="1" CornerRadius="10" Padding="20" Margin="0,0,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="12" Height="12" CornerRadius="6" Background="{Binding StatusColor}" Margin="0,0,12,0" />
+                    <StackPanel>
+                        <TextBlock Text="{Binding StatusTitle}" FontSize="24" FontWeight="SemiBold" Foreground="#F5F7FB" />
+                        <TextBlock Text="{Binding StatusDetail}" Style="{StaticResource QuietText}" Margin="0,4,0,0" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="打开 Web" Command="{Binding OpenWebCommand}" Margin="0,0,8,0" />
+                    <Button Content="启动服务" Command="{Binding StartCommand}" Background="#4D6BFE" BorderBrush="#4D6BFE" Margin="0,0,8,0" />
+                    <Button Content="停止服务" Command="{Binding StopCommand}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="0.9*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="运行概览" Style="{StaticResource SectionTitle}" />
+                <UniformGrid Grid.Row="1" Columns="2" Margin="0,0,0,20">
+                    <StackPanel Margin="0,0,12,0">
+                        <TextBlock Text="进程" Style="{StaticResource FieldLabel}" />
+                        <TextBlock Text="{Binding ProcessInfo}" Style="{StaticResource StatValue}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="运行时长" Style="{StaticResource FieldLabel}" />
+                        <TextBlock Text="{Binding UptimeText}" Style="{StaticResource StatValue}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,16,12,0">
+                        <TextBlock Text="内存占用" Style="{StaticResource FieldLabel}" />
+                        <TextBlock Text="{Binding MemoryText}" Style="{StaticResource StatValue}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,16,0,0">
+                        <TextBlock Text="访问地址" Style="{StaticResource FieldLabel}" />
+                        <TextBlock Text="{Binding WebAddress}" Style="{StaticResource StatValue}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                </UniformGrid>
+                <Border Grid.Row="2" Background="#101720" BorderBrush="#202B3D" BorderThickness="1" CornerRadius="8" Padding="14">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="运行日志" FontWeight="SemiBold" Foreground="#F5F7FB" />
+                            <Button Grid.Column="1" Content="清空" Command="{Binding ClearLogsCommand}" Padding="8,4" HorizontalAlignment="Right" FontSize="11" />
+                        </Grid>
+                        <ListBox Grid.Row="1" ItemsSource="{Binding Logs}" AutomationProperties.Name="DSH 运行日志" Background="Transparent" BorderThickness="0" Foreground="#92A0B6" FontFamily="Cascadia Mono,Consolas" FontSize="11" ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Border Grid.Column="2" Background="#151C28" BorderBrush="#253148" BorderThickness="1" CornerRadius="10" Padding="20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ScrollViewer.Resources>
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Width" Value="7" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollBar">
+                                        <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                            <Track.DecreaseRepeatButton><RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0" /></Track.DecreaseRepeatButton>
+                                            <Track.Thumb>
+                                                <Thumb>
+                                                    <Thumb.Template>
+                                                        <ControlTemplate TargetType="Thumb">
+                                                            <Border Background="#3B4960" CornerRadius="3" />
+                                                        </ControlTemplate>
+                                                    </Thumb.Template>
+                                                </Thumb>
+                                            </Track.Thumb>
+                                            <Track.IncreaseRepeatButton><RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0" /></Track.IncreaseRepeatButton>
+                                        </Track>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ScrollViewer.Resources>
+                    <StackPanel Margin="0,0,12,0">
+                        <TextBlock Text="启动参数" Style="{StaticResource SectionTitle}" />
+                        <TextBlock Text="DSH 命令" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding DshCommand, UpdateSourceTrigger=PropertyChanged}" ToolTip="例如 dsh.cmd 或完整路径" AutomationProperties.Name="DSH 命令" />
+                        <Grid Margin="0,14,0,6">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="94" /></Grid.ColumnDefinitions>
+                            <TextBlock Text="监听地址" Style="{StaticResource FieldLabel}" Margin="0" />
+                            <TextBlock Grid.Column="1" Text="端口" Style="{StaticResource FieldLabel}" Margin="0" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="94" /></Grid.ColumnDefinitions>
+                            <TextBox Text="{Binding Host, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,0" AutomationProperties.Name="监听地址" />
+                            <TextBox Grid.Column="1" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="端口" />
+                        </Grid>
+                        <TextBlock Text="Trusted Host（每行一个）" Style="{StaticResource FieldLabel}" Margin="0,14,0,6" />
+                        <TextBox Text="{Binding TrustedHosts, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" Height="52" VerticalScrollBarVisibility="Auto" AutomationProperties.Name="Trusted Host，每行一个" />
+                        <TextBlock Text="额外参数" Style="{StaticResource FieldLabel}" Margin="0,14,0,6" />
+                        <TextBox Text="{Binding ExtraArguments, UpdateSourceTrigger=PropertyChanged}" ToolTip="会追加到 dsh web 命令末尾" AutomationProperties.Name="额外启动参数" />
+                        <Separator Margin="0,18,0,16" Background="#29364B" />
+                        <CheckBox Content="启动后自动打开浏览器" IsChecked="{Binding OpenBrowserAfterStart}" />
+                        <CheckBox Content="应用启动时自动启动 DSH Web" IsChecked="{Binding AutoStartDsh}" />
+                        <CheckBox Content="登录 Windows 后启动本应用" IsChecked="{Binding StartWithWindows}" />
+                        <CheckBox Content="关闭窗口时最小化到托盘" IsChecked="{Binding MinimizeToTrayOnClose}" />
+                        <Button Content="保存启动参数" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="0,8,0,0" Background="#263452" BorderBrush="#3B4D77" />
+                        <TextBlock Text="{Binding SettingsStatus}" Foreground="#F2B84B" TextWrapping="Wrap" Margin="0,12,0,0" Visibility="{Binding HasPendingSettings, Converter={StaticResource BooleanToVisibilityConverter}}" AutomationProperties.LiveSetting="Polite" />
+                        <TextBlock Text="{Binding Notice}" Foreground="#8FAEFF" TextWrapping="Wrap" Margin="0,14,0,0" Visibility="{Binding HasNotice, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0,18,0,0">
+            <TextBlock Text="托盘图标：白色 = 未运行 · 蓝色 = 已响应" Style="{StaticResource QuietText}" VerticalAlignment="Center" />
+            <TextBlock Text="设置自动保存到本机用户目录" Style="{StaticResource QuietText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\dsh-launcher.ico</ApplicationIcon>
+    <AssemblyName>DshWebLauncher</AssemblyName>
+    <RootNamespace>DshWebLauncher</RootNamespace>
+    <Version>1.2.0</Version>
+    <Authors>DeepSeek DSH Community</Authors>
+    <Description>轻量的 DSH Web 启动与状态监控工具</Description>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\deepseek-whale.svg" />
+    <Resource Include="Assets\dsh-launcher.ico" />
+    <Resource Include="Assets\tray-blue.ico" />
+    <Resource Include="Assets\tray-white.ico" />
+    <Resource Include="Assets\deepseek-whale-blue.png" />
+  </ItemGroup>
+</Project>

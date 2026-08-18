@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+.vs/
+artifacts/
+*.zip
+*.sha256
+*.user
+*.suo
